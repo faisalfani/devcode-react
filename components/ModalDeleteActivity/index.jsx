@@ -29,6 +29,7 @@ const ModalDeleteActivity = ({ visible, onClose, activity, refetch }) => {
         width='490px'
         height={'fit-content'}
         py='40px'
+        data-cy='modal-information'
       >
         <div className='flex gap-3 py-6 px-8 items-center'>
           <AiOutlineInfoCircle
@@ -50,6 +51,7 @@ const ModalDeleteActivity = ({ visible, onClose, activity, refetch }) => {
         width='490px'
         height='355px'
         py='40px'
+        data-cy='modal-delete'
       >
         <div className='h-full flex flex-col items-center py-[40px] gap-[40px] px-[20px] text-center'>
           <IoWarningOutline
