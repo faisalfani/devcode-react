@@ -33,7 +33,13 @@ const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
 
   return (
     <>
-      <Modal visible={visible} onClose={onClose} width='830px' height='403px'>
+      <Modal
+        visible={visible}
+        onClose={onClose}
+        width='830px'
+        height='403px'
+        cypressData='modal-add'
+      >
         <div className='h-full flex flex-col  py-6 gap-5' data-cy='modal-add'>
           <div className='flex justify-between items-center px-8'>
             <Dialog.Title

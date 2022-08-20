@@ -55,7 +55,7 @@ const deleteTodo = async (id) => {
 };
 
 const useGetActivity = (extraparams) => {
-  return useQuery(['todo-lists'], getActivity, { ...extraparams });
+  return useQuery([], getActivity, { ...extraparams });
 };
 
 const useCreateActivity = (extraparams) =>
