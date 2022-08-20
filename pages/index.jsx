@@ -2,7 +2,7 @@ import { Header } from '../components';
 import Button from '../components/Button';
 
 import { HiOutlineTrash, HiPlus } from 'react-icons/hi';
-import { useCreateActivity, useGetActivity } from 'utils/fetchers';
+import { getActivity, useCreateActivity, useGetActivity } from 'utils/fetchers';
 import useDisclosure from 'hooks/useDisclosure';
 import { email } from 'utils/constanst';
 import { size } from 'lodash';
@@ -12,7 +12,16 @@ import { useRouter } from 'next/router';
 import ModalDeleteActivity from 'components/ModalDeleteActivity';
 import { useState } from 'react';
 
-export default function Home() {
+export async function getStaticProps() {
+  const res = await getActivity();
+  return {
+    props: {
+      activitiesData: res,
+    },
+  };
+}
+
+export default function Home({ activitiesData }) {
   const { push } = useRouter();
   const [selectedActivity, setselectedActivity] = useState();
 
@@ -22,7 +31,9 @@ export default function Home() {
     data: activities,
     refetch,
     isLoading: activityLoading,
-  } = useGetActivity();
+  } = useGetActivity({
+    initialData: activitiesData,
+  });
 
   const { mutate } = useCreateActivity({
     onSuccess: refetch,

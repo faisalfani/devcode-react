@@ -7,7 +7,6 @@ function MyApp({ Component, pageProps }) {
       queries: {
         refetchOnWindowFocus: false,
         retry: false,
-        cacheTime: 0,
       },
     },
   });
