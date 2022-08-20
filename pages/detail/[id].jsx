@@ -315,6 +315,7 @@ const ActivityDetail = () => {
         refetch={refetch}
         setSelectedTodo={setSelectedTodo}
       />
+      <div data-cy='modal-delete' />
     </div>
   );
 };

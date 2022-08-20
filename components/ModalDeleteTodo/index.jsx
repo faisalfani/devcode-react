@@ -29,7 +29,6 @@ const ModalDeleteTodo = ({ visible, onClose, activity: todo, refetch }) => {
       width='490px'
       height='355px'
       py='40px'
-      data-cy='modal-information'
     >
       <div className='h-full flex flex-col items-center py-[40px] gap-[40px] px-[20px] text-center'>
         <IoWarningOutline

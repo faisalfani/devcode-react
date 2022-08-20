@@ -125,6 +125,8 @@ export default function Home() {
         activity={selectedActivity}
         refetch={refetch}
       />
+      <div data-cy='modal-delete' />
+      <div data-cy='modal-information' />
     </div>
   );
 }
