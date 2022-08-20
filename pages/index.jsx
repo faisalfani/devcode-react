@@ -12,16 +12,7 @@ import { useRouter } from 'next/router';
 import ModalDeleteActivity from 'components/ModalDeleteActivity';
 import { useState } from 'react';
 
-export async function getStaticProps() {
-  const res = await getActivity();
-  return {
-    props: {
-      activitiesData: res,
-    },
-  };
-}
-
-export default function Home({ activitiesData }) {
+export default function Home() {
   const { push } = useRouter();
   const [selectedActivity, setselectedActivity] = useState();
 
@@ -31,9 +22,7 @@ export default function Home({ activitiesData }) {
     data: activities,
     refetch,
     isLoading: activityLoading,
-  } = useGetActivity({
-    initialData: activitiesData,
-  });
+  } = useGetActivity();
 
   const { mutate } = useCreateActivity({
     onSuccess: refetch,
@@ -55,9 +44,7 @@ export default function Home({ activitiesData }) {
     modalDelete.onOpen();
   };
 
-  return activityLoading ? (
-    <div className='loading'>loading...</div>
-  ) : (
+  return (
     <div className='bg-bg-primary h-screen w-screen'>
       <Header />
       <div className='w-screen flex justify-center'>
@@ -81,51 +68,57 @@ export default function Home({ activitiesData }) {
           </div>
 
           {/* task section */}
-          {size(activities) > 0 ? (
-            <div className='grid grid-cols-4 gap-x-5 gap-y-6 w-full'>
-              {activities.map((activity) => (
-                <div
-                  className='bg-white rounded-xl h-[234px] shadow-lg flex flex-col justify-between px-7 py-6 cursor-pointer'
-                  key={activity.id}
-                  data-cy='activity-item'
-                  onClick={() => onActivityClicked(activity.id)}
-                >
-                  <div
-                    className='font-bold text-lg text-n900'
-                    data-cy='activity-item-title'
-                  >
-                    {activity.title}
-                  </div>
-                  <div className='flex justify-between items-center'>
-                    <div
-                      className='text-secondary text-sm'
-                      data-cy='activity-item-date'
-                    >
-                      {activityDateFormat(activity.created_at)}
-                    </div>
-                    <HiOutlineTrash
-                      data-cy='activity-item-delete-button'
-                      className='text-secondary cursor-pointer'
-                      size={24}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onDeleteActivity(activity);
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+          {activityLoading ? (
+            <div className='loading'>loading...</div>
           ) : (
-            <div>
-              <Image
-                src='/assets/imgs/activity-empty-state.png'
-                width={767}
-                height={490}
-                alt='activity-empty-state'
-                data-cy='activity-empty-state'
-              />
-            </div>
+            <>
+              {size(activities) > 0 ? (
+                <div className='grid grid-cols-4 gap-x-5 gap-y-6 w-full'>
+                  {activities.map((activity) => (
+                    <div
+                      className='bg-white rounded-xl h-[234px] shadow-lg flex flex-col justify-between px-7 py-6 cursor-pointer'
+                      key={activity.id}
+                      data-cy='activity-item'
+                      onClick={() => onActivityClicked(activity.id)}
+                    >
+                      <div
+                        className='font-bold text-lg text-n900'
+                        data-cy='activity-item-title'
+                      >
+                        {activity.title}
+                      </div>
+                      <div className='flex justify-between items-center'>
+                        <div
+                          className='text-secondary text-sm'
+                          data-cy='activity-item-date'
+                        >
+                          {activityDateFormat(activity.created_at)}
+                        </div>
+                        <HiOutlineTrash
+                          data-cy='activity-item-delete-button'
+                          className='text-secondary cursor-pointer'
+                          size={24}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onDeleteActivity(activity);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  <Image
+                    src='/assets/imgs/activity-empty-state.png'
+                    width={767}
+                    height={490}
+                    alt='activity-empty-state'
+                    data-cy='activity-empty-state'
+                  />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
