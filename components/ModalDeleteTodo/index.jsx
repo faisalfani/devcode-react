@@ -14,6 +14,9 @@ const ModalDeleteTodo = ({ visible, onClose, activity: todo, refetch }) => {
       refetch();
       onClose();
       setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 1500);
     },
   });
 

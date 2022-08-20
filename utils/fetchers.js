@@ -1,8 +1,13 @@
 import client from './client';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { email } from './constanst';
 
 const getActivity = async () => {
-  const res = await client.get('/activity-groups');
+  const res = await client.get('/activity-groups', {
+    params: {
+      email: email,
+    },
+  });
   return res.data.data;
 };
 

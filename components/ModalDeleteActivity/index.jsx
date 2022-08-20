@@ -14,6 +14,9 @@ const ModalDeleteActivity = ({ visible, onClose, activity, refetch }) => {
       refetch();
       onClose();
       setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 1500);
     },
   });
 
