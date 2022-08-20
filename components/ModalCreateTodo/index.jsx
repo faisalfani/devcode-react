@@ -105,12 +105,7 @@ const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
                       />
                     </span>
                   </Listbox.Button>
-                  <Transition
-                    as={Fragment}
-                    leave='transition ease-in duration-100'
-                    leaveFrom='opacity-100'
-                    leaveTo='opacity-0'
-                  >
+                  <Transition as={Fragment}>
                     <Listbox.Options className='absolute w-[205px] max-h-60 overflow-auto rounded-md bg-white py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
                       {priority.map((prio, personIdx) => (
                         <Listbox.Option
