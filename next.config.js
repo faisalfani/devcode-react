@@ -5,3 +5,9 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+module.exports = module.exports = {
+  images: {
+    loader: 'akamai',
+    path: '',
+  },
+};
