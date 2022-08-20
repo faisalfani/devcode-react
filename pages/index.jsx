@@ -79,14 +79,21 @@ export default function Home() {
                   data-cy='activity-item'
                   onClick={() => onActivityClicked(activity.id)}
                 >
-                  <div className='font-bold text-lg text-n900'>
+                  <div
+                    className='font-bold text-lg text-n900'
+                    data-cy='activity-item-title'
+                  >
                     {activity.title}
                   </div>
                   <div className='flex justify-between items-center'>
-                    <div className='text-secondary text-sm'>
+                    <div
+                      className='text-secondary text-sm'
+                      data-cy='activity-item-date'
+                    >
                       {activityDateFormat(activity.created_at)}
                     </div>
                     <HiOutlineTrash
+                      data-cy='activity-item-delete-button'
                       className='text-secondary cursor-pointer'
                       size={24}
                       onClick={(e) => {
