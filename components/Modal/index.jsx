@@ -7,7 +7,6 @@ const Modal = ({ visible, onClose, children, width, height, cypressData }) => {
     if (event.key === 'Escape') {
       setEvent('escape');
     } else {
-      console.log('calledHere');
       setEvent(undefined);
     }
   }, []);

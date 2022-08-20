@@ -42,7 +42,7 @@ const ActivityDetail = () => {
           break;
 
         case 'az':
-          setTodoList(orderBy(todoList, ['id'], ['asc']));
+          setTodoList(orderBy(todoList, ['title'], ['asc']));
           break;
 
         case 'za':
