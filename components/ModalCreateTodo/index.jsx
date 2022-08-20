@@ -12,13 +12,13 @@ import { priority } from 'utils/constanst';
 const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
   const [selected, setSelected] = useState(priority[0]);
 
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState('');
 
   const { mutate: createTodo } = useCreateTodo({
     onSuccess: () => {
       onClose();
       setSelected(priority[0]);
-      setTitle(undefined);
+      setTitle('');
       refetch();
     },
   });
@@ -138,11 +138,12 @@ const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
           </div>
           <div className='w-full h-[1px] bg-gray-200 flex-shrink-0' />
 
-          <div className='flex w-full justify-end px-8'>
+          <div className='flex w-full justify-end px-8 '>
             <Button
               type='primary'
               onClick={onOk}
               data-cy='modal-add-save-button'
+              disabled={title.length === 0}
             >
               Simpan
             </Button>

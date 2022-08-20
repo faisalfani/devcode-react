@@ -1,3 +1,4 @@
+import { BiSortAlt2 } from 'react-icons/bi';
 import {
   TbSortAscending,
   TbSortAscendingLetters,
@@ -51,6 +52,17 @@ export const sortMenu = [
       />
     ),
     key: 'za',
+  },
+  {
+    label: 'Belum Selesai',
+    icons: (active) => (
+      <BiSortAlt2
+        className={`${active ? 'text-white' : 'text-primary'}`}
+        size={18}
+        data-cy='sort-selection-icon'
+      />
+    ),
+    key: 'undone',
   },
 ];
 

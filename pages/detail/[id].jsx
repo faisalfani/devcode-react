@@ -49,6 +49,10 @@ const ActivityDetail = () => {
           setTodoList(orderBy(todoList, ['title'], ['desc']));
           break;
 
+        case 'undone':
+          setTodoList(orderBy(todoList, ['is_active'], ['desc']));
+          break;
+
         default:
           setTodoList(orderBy(todoList, ['id'], ['desc']));
           break;
