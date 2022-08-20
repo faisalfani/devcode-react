@@ -17,11 +17,7 @@ const createActivity = async (params) => {
 };
 
 const deleteActivity = async (id) => {
-  const res = await client.delete('/activity-groups', {
-    params: {
-      id,
-    },
-  });
+  const res = await client.delete(`/activity-groups/${id}`);
   return res.data.data;
 };
 
