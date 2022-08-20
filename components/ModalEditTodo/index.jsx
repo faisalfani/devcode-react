@@ -38,39 +38,59 @@ const ModalEditTodo = ({ visible, onClose, refetch, id, todo }) => {
   return (
     <>
       <Modal visible={visible} onClose={onClose} width='830px' height='403px'>
-        <div className='h-full flex flex-col  py-6 gap-5 '>
+        <div className='h-full flex flex-col  py-6 gap-5' data-cy='modal-add'>
           <div className='flex justify-between items-center px-8'>
-            <Dialog.Title as='h2' className='text-lg font-semibold '>
+            <Dialog.Title
+              as='h2'
+              className='text-lg font-semibold '
+              data-cy='modal-add-title'
+            >
               Edit Item
             </Dialog.Title>
             <AiOutlineClose
               size={24}
               className='text-secondary cursor-pointer'
               onClick={onClose}
+              data-cy='modal-add-close-button'
             />
           </div>
           <div className='w-full h-[1px] bg-gray-200 flex-shrink-0' />
           {selected && (
             <div className='modal-body flex flex-col px-8 mt-3 gap-6'>
               <div className='form-group flex flex-col gap-2'>
-                <label className='text-xs font-semibold'>NAMA LIST ITEM</label>
+                <label
+                  className='text-xs font-semibold'
+                  data-cy='modal-add-name-title'
+                  htmlFor='item-name'
+                >
+                  NAMA LIST ITEM
+                </label>
                 <input
                   className='px-4 py-3 border-[1px] rounded-lg  
                 focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none
                 '
                   type='text'
                   name='title'
-                  id=''
+                  id='item-name'
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder='Tambahkan nama list item'
+                  data-cy='modal-add-name-input'
                 />
               </div>
               <div className='form-group flex flex-col gap-2'>
-                <label className='text-xs font-semibold'>PRIORITY</label>
+                <label
+                  className='text-xs font-semibold'
+                  data-cy='modal-add-priority-title'
+                >
+                  PRIORITY
+                </label>
                 <Listbox value={selected} onChange={setSelected}>
                   <div className='relative mt-1'>
-                    <Listbox.Button className='relative cursor-default rounded-lg bg-white pl-3 pr-10 text-left border-gray-200 border-[1px] py-5 px-4 w-[205px] focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm'>
+                    <Listbox.Button
+                      className='relative cursor-default rounded-lg bg-white pl-3 pr-10 text-left border-gray-200 border-[1px] py-5 px-4 w-[205px] focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm'
+                      data-cy='modal-add-priority-dropdown'
+                    >
                       <div className='flex items-center gap-5'>
                         <div
                           className={`circle w-3 h-3 ${selected.color} rounded-full`}
@@ -101,6 +121,7 @@ const ModalEditTodo = ({ visible, onClose, refetch, id, todo }) => {
                                   : 'text-gray-900'
                               }`
                             }
+                            data-cy='modal-add-priority-item'
                             value={prio}
                           >
                             {({ selected }) => (
@@ -130,8 +151,8 @@ const ModalEditTodo = ({ visible, onClose, refetch, id, todo }) => {
           <div className='flex w-full justify-end px-8'>
             <Button
               type='primary'
-              data-cy='modal-delete-confirm-button'
               onClick={onOk}
+              data-cy='modal-add-save-button'
             >
               Simpan
             </Button>

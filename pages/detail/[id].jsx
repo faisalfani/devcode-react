@@ -133,11 +133,13 @@ const ActivityDetail = () => {
                   value={activityTitle}
                   onChange={(e) => setActivityTitle(e.target.value)}
                   onBlur={handleUpdateActivityTitle}
+                  autoFocus
                 />
               ) : (
                 <div
                   className='font-bold text-4xl text-n900'
                   data-cy='todo-title'
+                  onClick={onEditClicked}
                 >
                   {activityData.title}
                 </div>
@@ -150,65 +152,71 @@ const ActivityDetail = () => {
               />
             </div>
             <div className='flex gap-4 items-center'>
-              <Menu
-                as='div'
-                className='relative inline-block text-left'
-                data-cy='todo-sort-button'
-              >
-                <div>
-                  <Menu.Button className='border-gray-300 border-[1px] rounded-full flex items-center justify-center w-14 h-14'>
-                    <BiSortAlt2 size={24} className='text-secondary' />
-                  </Menu.Button>
-                </div>
-                <Transition
-                  as={Fragment}
-                  enter='transition ease-out duration-100'
-                  enterFrom='transform opacity-0 scale-95'
-                  enterTo='transform opacity-100 scale-100'
-                  leave='transition ease-in duration-75'
-                  leaveFrom='transform opacity-100 scale-100'
-                  leaveTo='transform opacity-0 scale-95'
+              {size(todoList) > 0 ? (
+                <Menu
+                  as='div'
+                  className='relative inline-block text-left'
+                  data-cy='todo-sort-button'
                 >
-                  <Menu.Items className='absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-30'>
-                    {sortMenu.map((menu) => (
-                      <Menu.Item
-                        as='div'
-                        key={menu.key}
-                        onClick={() => setActiveSort(menu.key)}
-                        data-cy='sort-selection'
-                      >
-                        {({ active }) => (
-                          <button
-                            className={`${
-                              active ? 'bg-primary text-white' : 'text-gray-900'
-                            } group flex justify-between w-full items-center px-5 py-4 text-sm border-b-gray-200 `}
-                            data-cy={
-                              activeSort === menu.key
-                                ? 'sort-selection-selected'
-                                : 'false'
-                            }
-                          >
-                            <div className='flex gap-3 items-center'>
-                              {menu.icons(active)}
-                              <span data-cy='sort-selection-title'>
-                                {menu.label}
-                              </span>
-                            </div>
-                            {activeSort === menu.key && (
-                              <AiOutlineCheck
-                                className={`${
-                                  active ? 'text-white' : 'text-black'
-                                }`}
-                                size={18}
-                              />
-                            )}
-                          </button>
-                        )}
-                      </Menu.Item>
-                    ))}
-                  </Menu.Items>
-                </Transition>
-              </Menu>
+                  <div>
+                    <Menu.Button className='border-gray-300 border-[1px] rounded-full flex items-center justify-center w-14 h-14'>
+                      <BiSortAlt2 size={24} className='text-secondary' />
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter='transition ease-out duration-100'
+                    enterFrom='transform opacity-0 scale-95'
+                    enterTo='transform opacity-100 scale-100'
+                    leave='transition ease-in duration-75'
+                    leaveFrom='transform opacity-100 scale-100'
+                    leaveTo='transform opacity-0 scale-95'
+                  >
+                    <Menu.Items className='absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-30'>
+                      {sortMenu.map((menu) => (
+                        <Menu.Item
+                          as='div'
+                          key={menu.key}
+                          onClick={() => setActiveSort(menu.key)}
+                          data-cy='sort-selection'
+                        >
+                          {({ active }) => (
+                            <button
+                              className={`${
+                                active
+                                  ? 'bg-primary text-white'
+                                  : 'text-gray-900'
+                              } group flex justify-between w-full items-center px-5 py-4 text-sm border-b-gray-200 `}
+                              data-cy={
+                                activeSort === menu.key
+                                  ? 'sort-selection-selected'
+                                  : 'false'
+                              }
+                            >
+                              <div className='flex gap-3 items-center'>
+                                {menu.icons(active)}
+                                <span data-cy='sort-selection-title'>
+                                  {menu.label}
+                                </span>
+                              </div>
+                              {activeSort === menu.key && (
+                                <AiOutlineCheck
+                                  className={`${
+                                    active ? 'text-white' : 'text-black'
+                                  }`}
+                                  size={18}
+                                />
+                              )}
+                            </button>
+                          )}
+                        </Menu.Item>
+                      ))}
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              ) : (
+                <div></div>
+              )}
 
               <Button
                 type='primary'
@@ -288,7 +296,6 @@ const ActivityDetail = () => {
                   height={413}
                   alt='activity-empty-state'
                   data-cy='todo-empty-state'
-                  onClick={modalCreateTodo.onOpen}
                 />
               </div>
             )}

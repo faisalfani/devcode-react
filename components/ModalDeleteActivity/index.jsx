@@ -30,7 +30,10 @@ const ModalDeleteActivity = ({ visible, onClose, activity, refetch }) => {
         height={'fit-content'}
         py='40px'
       >
-        <div className='flex gap-3 py-6 px-8 items-center'>
+        <div
+          className='flex gap-3 py-6 px-8 items-center'
+          data-cy='modal-information'
+        >
           <AiOutlineInfoCircle
             size={24}
             className='text-success'
@@ -51,7 +54,10 @@ const ModalDeleteActivity = ({ visible, onClose, activity, refetch }) => {
         height='355px'
         py='40px'
       >
-        <div className='h-full flex flex-col items-center py-[40px] gap-[40px] px-[20px] text-center'>
+        <div
+          className='h-full flex flex-col items-center py-[40px] gap-[40px] px-[20px] text-center'
+          data-cy='modal-delete'
+        >
           <IoWarningOutline
             className='text-danger'
             size={84}

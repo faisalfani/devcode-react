@@ -34,7 +34,7 @@ const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
   return (
     <>
       <Modal visible={visible} onClose={onClose} width='830px' height='403px'>
-        <div className='h-full flex flex-col  py-6 gap-5 '>
+        <div className='h-full flex flex-col  py-6 gap-5' data-cy='modal-add'>
           <div className='flex justify-between items-center px-8'>
             <Dialog.Title
               as='h2'
@@ -56,6 +56,7 @@ const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
               <label
                 className='text-xs font-semibold'
                 data-cy='modal-add-name-title'
+                htmlFor='item-name'
               >
                 NAMA LIST ITEM
               </label>
@@ -65,7 +66,7 @@ const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
                 '
                 type='text'
                 name='title'
-                id=''
+                id='item-name'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder='Tambahkan nama list item'
@@ -85,10 +86,7 @@ const ModalCreateTodo = ({ visible, onClose, refetch, id }) => {
                     className='relative cursor-default rounded-lg bg-white pl-3 pr-10 text-left border-gray-200 border-[1px] py-5 px-4 w-[205px] focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm'
                     data-cy='modal-add-priority-dropdown'
                   >
-                    <div
-                      className='flex items-center gap-5'
-                      data-cy='modal-add-priority-item'
-                    >
+                    <div className='flex items-center gap-5'>
                       <div
                         className={`circle w-3 h-3 ${selected.color} rounded-full`}
                       />

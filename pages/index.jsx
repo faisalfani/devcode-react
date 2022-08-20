@@ -113,7 +113,6 @@ export default function Home() {
                 height={490}
                 alt='activity-empty-state'
                 data-cy='activity-empty-state'
-                onClick={onCreateActivityClicked}
               />
             </div>
           )}
@@ -125,8 +124,6 @@ export default function Home() {
         activity={selectedActivity}
         refetch={refetch}
       />
-      <div data-cy='modal-delete' />
-      <div data-cy='modal-information' />
     </div>
   );
 }
